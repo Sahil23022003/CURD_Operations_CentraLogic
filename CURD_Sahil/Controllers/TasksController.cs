@@ -15,13 +15,20 @@ namespace CURD_Sahil.Controllers
     [ApiController]
     public class TasksController : ControllerBase
     {
-        public string URI = "https://localhost:8081";
-        public string PrimaryKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
-        public string DatabaseName = "TasksCurd";
-        public string ContainerName = "TaskBucket";
+        //Created an environment variable instead of this hard code in lauchSettings.json file
+
+        //public string URI = "https://localhost:8081";
+        //public string PrimaryKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
+        //public string DatabaseName = "TasksCurd";
+        //public string ContainerName = "TaskBucket";
 
         private Container GetContainer()
         {
+            string URI = Environment.GetEnvironmentVariable("Cosmos-Uri");
+            string PrimaryKey = Environment.GetEnvironmentVariable("Primary-Key");
+            string DatabaseName = Environment.GetEnvironmentVariable("Database");
+            string ContainerName = Environment.GetEnvironmentVariable("Container");
+
             CosmosClient cosmosClient = new CosmosClient(URI, PrimaryKey);
             Database database = cosmosClient.GetDatabase(DatabaseName);
             Container container = database.GetContainer(ContainerName);

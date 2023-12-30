@@ -3,13 +3,13 @@ using System.Text.Json.Serialization;
 
 namespace CURD_Sahil.Entity
 {
-    public class Tasks
+    public class BaseEntity
     {
         //Mandatory Fields
-        [JsonProperty(PropertyName = "id" )]
+        [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName ="uId",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(PropertyName = "uId", NullValueHandling = NullValueHandling.Ignore)]
         public string UId { get; set; }
 
         [JsonProperty(PropertyName = "dType", NullValueHandling = NullValueHandling.Ignore)]
@@ -28,10 +28,10 @@ namespace CURD_Sahil.Entity
         public string UpdatedBy { get; set; }
 
         [JsonProperty(PropertyName = "updatedByName", NullValueHandling = NullValueHandling.Ignore)]
-        public string UpdatedByName { get; set;}
+        public string UpdatedByName { get; set; }
 
         [JsonProperty(PropertyName = "updatedOn", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime UpdatedOn { get; set;}
+        public DateTime UpdatedOn { get; set; }
 
         [JsonProperty(PropertyName = "version", NullValueHandling = NullValueHandling.Ignore)]
         public int Version { get; set; }
@@ -41,8 +41,10 @@ namespace CURD_Sahil.Entity
 
         [JsonProperty(PropertyName = "archieved", NullValueHandling = NullValueHandling.Ignore)]
         public bool Archieved { get; set; }
-
-
+    }
+    //Used concept of inheritance 
+    public class Tasks : BaseEntity
+    {
         //Class Fields/Properties
         [JsonProperty(PropertyName = "taskId", NullValueHandling = NullValueHandling.Ignore)]
         public string TaskId { get; set; }
